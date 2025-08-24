@@ -426,7 +426,7 @@ const CalendarPage = ({ onBack }) => {
       <div className="text-center">
         <p className="text-lg text-gray-700 mb-2">យើងបានស្រលាញ់គ្នាអស់រយៈពេល.....!❤️</p>
         <p className="text-2xl font-bold text-red-500">
-          ❤️ ស្រឡាញ់អ្នករហូតដល់ចាស់ ដូចពន្លឺថ្ងៃមិនដែលរលត់!❤️
+          ❤️ ស្រឡាញ់អ្នករហូតដល់ចាស់ ដូចពន្លឺថ្ងៃមិនដែលរលត់!!❤️
         </p>
       </div>
 
@@ -668,21 +668,38 @@ const PuzzleGamePage = ({ onBack }) => {
 
       {/* Win Modal */}
       {showWinMessage && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-2xl p-8 shadow-lg text-center max-w-sm w-full">
-            <div className="text-red-500 text-6xl mb-4">❤️</div>
-            <h2 className="text-2xl font-bold text-pink-700 mb-2">អ្នកពូកែណាស់!</h2>
-            <p className="text-gray-600 mb-6">សូមអបអរសាទរ!</p>
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-3xl p-8 shadow-2xl text-center max-w-sm w-full transform scale-95 animate-modal-pop">
+            <div className="text-red-500 text-6xl mb-4 animate-bounce-heart">❤️</div>
+            <h2 className="text-3xl font-extrabold text-pink-700 mb-2">អ្នកពូកែណាស់! <br /> (You're amazing!)</h2>
+            <p className="text-gray-600 mb-6 text-base">សូមអបអរសាទរ! (Congratulations!)</p>
             <button
               onClick={() => {
                 setShowWinMessage(false);
                 resetGame();
               }}
-              className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-full shadow-md transition"
+              className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105"
             >
-              បិទ
+              បិទ (Close)
             </button>
           </div>
+          {/* Tailwind CSS keyframes for modal animation */}
+          <style jsx>{`
+            @keyframes modalPop {
+              0% { opacity: 0; transform: scale(0.7); }
+              100% { opacity: 1; transform: scale(1); }
+            }
+            .animate-modal-pop {
+              animation: modalPop 0.3s ease-out forwards;
+            }
+            @keyframes bounceHeart {
+              0%, 100% { transform: scale(1); }
+              50% { transform: scale(1.2); }
+            }
+            .animate-bounce-heart {
+              animation: bounceHeart 1.2s infinite;
+            }
+          `}</style>
         </div>
       )}
     </div>
