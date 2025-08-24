@@ -431,43 +431,51 @@ const CalendarPage = ({ onBack }) => {
       </div>
 
       {/* Gallery Modal */}
-      {showGallery && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl shadow-lg p-6 max-w-5xl w-full relative">
-            {/* Close Button */}
-            <button
-              onClick={() => {
-                setShowGallery(false);
-                setSelectedImg(null);
-              }}
-              className="absolute top-4 right-4 text-gray-700 hover:text-red-500 font-bold text-xl"
-            >
-              ✕
-            </button>
+      {/* Gallery Modal */}
+{showGallery && (
+  <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-2 sm:p-4">
+    <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 w-full max-w-5xl max-h-screen overflow-y-auto relative">
+      
+      {/* Close Button */}
+      <button
+        onClick={() => {
+          setShowGallery(false);
+          setSelectedImg(null);
+        }}
+        className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-gray-200 hover:bg-red-500 
+                   hover:text-white rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center 
+                   justify-center text-lg sm:text-xl"
+      >
+        ✕
+      </button>
 
-            <h2 className="text-2xl font-bold text-pink-600 mb-6 text-center">Our Love Year ❤️</h2>
+      {/* Title */}
+      <h2 className="text-xl sm:text-2xl font-bold text-pink-600 mb-4 sm:mb-6 text-center">
+        Our Love Year ❤️
+      </h2>
 
-            {/* Grid of 12 months */}
-            <div className="grid grid-cols-3 gap-4">
-              {images.map((img, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col items-center bg-white rounded-xl shadow-lg p-3 hover:scale-105 transition-transform cursor-pointer"
-                  onClick={() => setSelectedImg(img)}
-                >
-                  <img
-                    src={img.src}
-                    alt={img.label}
-                    className="w-28 h-25 object-cover rounded-lg shadow-md"
-                  />
-                  <p className="mt-2 text-pink-600 font-semibold">{img.label}</p>
-                </div>
-              ))}
-            </div>
+      {/* Grid of 12 months */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+        {images.map((img, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center bg-white rounded-xl shadow-lg p-2 sm:p-3 hover:scale-105 transition-transform cursor-pointer"
+            onClick={() => setSelectedImg(img)}
+          >
+            <img
+              src={img.src}
+              alt={img.label}
+              className="w-24 h-20 sm:w-28 sm:h-24 object-cover rounded-lg shadow-md"
+            />
+            <p className="mt-2 text-pink-600 text-sm sm:text-base font-semibold text-center">
+              {img.label}
+            </p>
           </div>
-        </div>
-      )}
-
+        ))}
+      </div>
+    </div>
+  </div>
+)}
       {/* Single Image Detail Modal */}
       {selectedImg && (
         <div
