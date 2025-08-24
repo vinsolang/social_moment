@@ -24,7 +24,9 @@ import Puzzle from './assets/image/puzzle.png';
 
 
 
-// LoadingScreen Component
+/* =====================================================
+              ## LoadingScreen Component
+=======================================================*/
 const LoadingScreen = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
 
@@ -51,7 +53,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#fddde6] to-[#fce4ec] font-inter">
-       <FloatingHearts /> {/* ❤️ background hearts */}
+      <FloatingHearts /> {/* ❤️ background hearts */}
       <div className="relative w-72 h-36 bg-white rounded-xl shadow-lg flex flex-col items-center justify-center p-6 space-y-4">
         <h2 className="text-2xl font-semibold text-gray-800">Loading...</h2>
         <div className="w-full bg-gray-200 rounded-full h-2.5">
@@ -66,7 +68,9 @@ const LoadingScreen = ({ onLoadingComplete }) => {
   );
 };
 
-// HomeMenu Component
+/* =====================================================
+              ## HomeMenu Component
+=======================================================*/
 const HomeMenu = ({ onNavigate }) => {
   const menuItems = [
     {
@@ -155,7 +159,7 @@ const HomeMenu = ({ onNavigate }) => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#fddde6] to-[#fce4ec] font-inter p-4">
-       <FloatingHearts /> {/* ❤️ background hearts */}
+      <FloatingHearts /> {/* ❤️ background hearts */}
       <div className="bg-white rounded-3xl shadow-xl p-8 max-w-4xl mx-auto text-center">
         <h1 className="text-4xl font-extrabold text-pink-700 mb-8 tracking-wide">
           Our Special Moments
@@ -163,18 +167,18 @@ const HomeMenu = ({ onNavigate }) => {
         <div className="flex flex-wrap justify-center gap-6">
           {menuItems.map((item, index) => (
             <div
-                key={index}
-                className="group flex flex-col items-center bg-white p-6 rounded-2xl shadow-md cursor-pointer
+              key={index}
+              className="group flex flex-col items-center bg-white p-6 rounded-2xl shadow-md cursor-pointer
                           transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg
-                          w-40 h-40 justify-center"
-                style={{ backgroundColor: 'rgb(255, 240, 245, 0.7)' }}
-                onClick={() => onNavigate(item.path)}
-              >
-                <div className="mb-3 transform transition-transform group-hover:scale-110">
-                  <img src={item.icon.props.src} alt={`${item.label} icon`} className="w-20 h-20 object-contain" />
-                </div>
-                <p className="text-lg font-semibold text-gray-800">{item.label}</p>
+                          w-30 h-30 justify-center"
+              style={{ backgroundColor: 'rgb(255, 240, 245, 0.7)' }}
+              onClick={() => onNavigate(item.path)}
+            >
+              <div className="mb-3 transform transition-transform group-hover:scale-110">
+                <img src={item.icon.props.src} alt={`${item.label} icon`} className="w-20 h-20 object-contain" />
               </div>
+              <p className="text-lg font-semibold text-gray-800">{item.label}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -182,8 +186,9 @@ const HomeMenu = ({ onNavigate }) => {
   );
 };
 
-
-// MemoriesPage Component
+/* =====================================================
+              ##  MemoriesPage Component
+=======================================================*/
 const MemoriesPage = ({ onBack }) => {
   const images = [Image1, Image2, Image3, Image4, Image5, Image6];
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -216,10 +221,10 @@ const MemoriesPage = ({ onBack }) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#fddde6] to-[#fce4ec] flex flex-col items-center p-4 relative">
-       <FloatingHearts /> {/* ❤️ background hearts */}
+      <FloatingHearts /> {/* ❤️ background hearts */}
       {/* Back Button */}
       <div className="absolute top-8 left-8">
-       <button
+        <button
           onClick={onBack}
           className="flex items-center text-pink-700 font-semibold px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 ease-in-out"
           style={{ backgroundColor: 'rgb(255, 240, 245, 0.7)' }}
@@ -274,7 +279,7 @@ const MemoriesPage = ({ onBack }) => {
           }
           className="px-4 py-2 bg-pink-500 text-white rounded-full shadow-md hover:bg-pink-600"
         >
-           Prev
+          Prev
         </button>
         <button
           onClick={() =>
@@ -282,14 +287,15 @@ const MemoriesPage = ({ onBack }) => {
           }
           className="px-4 py-2 bg-pink-500 text-white rounded-full shadow-md hover:bg-pink-600"
         >
-          Next 
+          Next
         </button>
       </div>
     </div>
   );
 };
-
-// CalendarPage Component
+/* =====================================================
+              ##  CalendarPage Component
+=======================================================*/
 const images = [
   { src: Image1, label: "January" },
   { src: Image7, label: "February" },
@@ -318,6 +324,7 @@ const CalendarPage = ({ onBack }) => {
   });
 
   const [showGallery, setShowGallery] = useState(false);
+  const [selectedImg, setSelectedImg] = useState(null);
 
   useEffect(() => {
     const calculateTimeLapsed = () => {
@@ -341,14 +348,7 @@ const CalendarPage = ({ onBack }) => {
 
       const seconds = diffSeconds;
 
-      setTimeLapsed({
-        years,
-        months,
-        days,
-        hours,
-        minutes,
-        seconds,
-      });
+      setTimeLapsed({ years, months, days, hours, minutes, seconds });
     };
 
     calculateTimeLapsed();
@@ -362,10 +362,10 @@ const CalendarPage = ({ onBack }) => {
     <div className="min-h-screen flex flex-col items-center bg-gradient-to-br from-[#fddde6] to-[#fce4ec] font-inter p-4 relative">
       {/* Back button */}
       <div className="absolute top-8 left-8">
-       <button
+        <button
           onClick={onBack}
           className="flex items-center text-pink-700 font-semibold px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 ease-in-out"
-          style={{ backgroundColor: 'rgb(255, 240, 245, 0.7)' }}
+          style={{ backgroundColor: "rgb(255, 240, 245, 0.7)" }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -375,11 +375,7 @@ const CalendarPage = ({ onBack }) => {
             stroke="currentColor"
             className="w-5 h-5 mr-1"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 19.5L8.25 12l7.5-7.5"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
           </svg>
           Back
         </button>
@@ -410,269 +406,284 @@ const CalendarPage = ({ onBack }) => {
       <div className="flex justify-center items-center space-x-2 sm:space-x-4 mb-8 text-center flex-wrap">
         <div className="flex flex-col items-center">
           <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">
-            {formatTime(timeLapsed.years)}
-          </span>
-          <span className="text-xs sm:text-sm text-gray-600">Year</span>
-        </div>
-        <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">.</span>
-        <div className="flex flex-col items-center">
+            {formatTime(timeLapsed.years)} </span> <span className="text-xs sm:text-sm text-gray-600">Year</span>
+        </div> <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">.</span>
+        <div className="flex flex-col items-center"> <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">
+          {formatTime(timeLapsed.months)} </span> <span className="text-xs sm:text-sm text-gray-600">Month</span>
+        </div> <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">.</span>
+        <div className="flex flex-col items-center"> <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">
+          {formatTime(timeLapsed.days)} </span> <span className="text-xs sm:text-sm text-gray-600">Days</span>
+        </div> <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">.</span>
+        <div className="flex flex-col items-center"> <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">
+          {formatTime(timeLapsed.hours)} </span> <span className="text-xs sm:text-sm text-gray-600">Hours</span> </div>
+        <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">.</span> <div className="flex flex-col items-center">
           <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">
-            {formatTime(timeLapsed.months)}
-          </span>
-          <span className="text-xs sm:text-sm text-gray-600">Month</span>
-        </div>
+            {formatTime(timeLapsed.minutes)} </span> <span className="text-xs sm:text-sm text-gray-600">Minutes</span> </div>
         <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">.</span>
-        <div className="flex flex-col items-center">
-          <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">
-            {formatTime(timeLapsed.days)}
-          </span>
-          <span className="text-xs sm:text-sm text-gray-600">Days</span>
-        </div>
-        <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">.</span>
-        <div className="flex flex-col items-center">
-          <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">
-            {formatTime(timeLapsed.hours)}
-          </span>
-          <span className="text-xs sm:text-sm text-gray-600">Hours</span>
-        </div>
-        <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">.</span>
-        <div className="flex flex-col items-center">
-          <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">
-            {formatTime(timeLapsed.minutes)}
-          </span>
-          <span className="text-xs sm:text-sm text-gray-600">Minutes</span>
-        </div>
-        <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">.</span>
-        <div className="flex flex-col items-center">
-          <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">
-            {formatTime(timeLapsed.seconds)}
-          </span>
-          <span className="text-xs sm:text-sm text-gray-600">Seconds</span>
-        </div>
-      </div>
+        <div className="flex flex-col items-center"> <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-700">
+          {formatTime(timeLapsed.seconds)} </span> <span className="text-xs sm:text-sm text-gray-600">Seconds</span> </div> </div>
 
       <div className="text-center">
         <p className="text-lg text-gray-700 mb-2">យើងបានស្រលាញ់គ្នាអស់រយៈពេល.....!❤️</p>
-        <p className="text-2xl font-bold text-red-500">❤️ ស្រឡាញ់អ្នករហូតដល់ចាស់ ដូចពន្លឺថ្ងៃមិនដែលរលត់ ដូចព្រះចន្ទមិនដែលអស់ពន្លឺ MY LOVE !!❤️</p>
-        {/* <p className="text-2xl font-bold text-red-500"> ទោះថ្ងៃខ្លះមានភ្លៀងធ្លាក់ ក្តីស្រឡាញ់នេះមិនដែលលង់ ប៉ុន្តែតែងតែរឹងមាំ ហើយនៅជាប់ជានិច្ច </p>
-        <p className="text-2xl font-bold text-red-500">ខ្ញុំចង់ឃើញស្នាមញញឹមអ្នករាល់ថ្ងៃ រហូតដល់ពេលជ្រួញភ្នែកក៏នៅស្រឡាញ់ដដែល។" ❤️</p> */}
+        <p className="text-2xl font-bold text-red-500">
+          ❤️ ស្រឡាញ់អ្នករហូតដល់ចាស់ ដូចពន្លឺថ្ងៃមិនដែលរលត់ ដូចព្រះចន្ទមិនដែលអស់ពន្លឺ MY LOVE !!❤️
+        </p>
       </div>
 
-  {/* Gallery Modal */}
-  {showGallery && (
-    <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl shadow-lg p-6 max-w-5xl w-full relative">
-        {/* Close Button */}
-        <button
-          onClick={() => setShowGallery(false)}
-          className="absolute top-4 right-4 text-gray-700 hover:text-red-500 font-bold text-xl"
-        >
-          ✕
-        </button>
-
-        <h2 className="text-2xl font-bold text-pink-600 mb-6 text-center">
-          Our Love Year ❤️
-        </h2>
-
-        {/* Grid of 12 months */}
-        <div className="grid grid-cols-3">
-          {images.map((img, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center bg-white rounded-xl shadow-lg p-3 hover:scale-105 transition-transform"
+      {/* Gallery Modal */}
+      {showGallery && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl shadow-lg p-6 max-w-5xl w-full relative">
+            {/* Close Button */}
+            <button
+              onClick={() => {
+                setShowGallery(false);
+                setSelectedImg(null);
+              }}
+              className="absolute top-4 right-4 text-gray-700 hover:text-red-500 font-bold text-xl"
             >
-              <img
-                src={img.src}
-                alt={img.label}
-                className="w-32 h-28 object-cover rounded-lg shadow-md"
-              />
-              <p className="mt-2 text-pink-600 font-semibold">{img.label}</p>
+              ✕
+            </button>
+
+            <h2 className="text-2xl font-bold text-pink-600 mb-6 text-center">Our Love Year ❤️</h2>
+
+            {/* Grid of 12 months */}
+            <div className="grid grid-cols-3 gap-4">
+              {images.map((img, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-center bg-white rounded-xl shadow-lg p-3 hover:scale-105 transition-transform cursor-pointer"
+                  onClick={() => setSelectedImg(img)}
+                >
+                  <img
+                    src={img.src}
+                    alt={img.label}
+                    className="w-28 h-25 object-cover rounded-lg shadow-md"
+                  />
+                  <p className="mt-2 text-pink-600 font-semibold">{img.label}</p>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
-      </div>
+      )}
+
+      {/* Single Image Detail Modal */}
+      {selectedImg && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[60] p-2 sm:p-4"
+          onClick={() => setSelectedImg(null)}
+        >
+          <div
+            className="bg-white rounded-2xl shadow-lg p-3 sm:p-4 w-full max-w-md sm:max-w-3xl relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setSelectedImg(null)}
+              className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-gray-200 hover:bg-red-500 
+                   hover:text-white rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center 
+                   justify-center text-lg sm:text-xl"
+            >
+              ✕
+            </button>
+
+            {/* Image */}
+            <img
+              src={selectedImg.src}
+              alt={selectedImg.label}
+              className="w-full h-auto max-h-[70vh] object-contain rounded-lg"
+            />
+
+            {/* Caption */}
+            <p className="mt-3 text-center text-base sm:text-lg font-semibold text-pink-600">
+              {selectedImg.label}
+            </p>
+          </div>
+        </div>
+      )}
     </div>
-  )}
-      </div>
-    );
+  );
+};
+
+/* =====================================================
+              ## PuzzleGamePage Component
+=======================================================*/
+const PuzzleGamePage = ({ onBack }) => {
+  const initialImages = [
+    { src: Image1, id: 1 },
+    { src: Image2, id: 2 },
+    { src: Image3, id: 3 },
+    { src: Image4, id: 4 },
+    { src: Image5, id: 5 },
+    { src: Image6, id: 6 },
+  ];
+
+  // create duplicated cards + shuffle
+  const initializeCards = () => {
+    const duplicatedImages = [...initialImages, ...initialImages];
+    return duplicatedImages
+      .sort(() => Math.random() - 0.5)
+      .map((image, index) => ({
+        ...image,
+        index,
+        isFlipped: false,
+        isMatched: false,
+      }));
   };
 
+  const [cards, setCards] = useState(initializeCards);
+  const [flippedCards, setFlippedCards] = useState([]);
+  const [matchedPairs, setMatchedPairs] = useState(0);
+  const [showWinMessage, setShowWinMessage] = useState(false);
+  const [canFlip, setCanFlip] = useState(true);
 
-  // PuzzleGamePage Component
-  const PuzzleGamePage = ({ onBack }) => {
-    const initialImages = [
-      { src: Image1, id: 1 },
-      { src: Image2, id: 2 },
-      { src: Image3, id: 3 },
-      { src: Image4, id: 4 },
-      { src: Image5, id: 5 },
-      { src: Image6, id: 6 },
-    ];
+  // win check
+  useEffect(() => {
+    if (matchedPairs === initialImages.length && initialImages.length > 0) {
+      setTimeout(() => setShowWinMessage(true), 500);
+    }
+  }, [matchedPairs, initialImages.length]);
 
-    // create duplicated cards + shuffle
-    const initializeCards = () => {
-      const duplicatedImages = [...initialImages, ...initialImages];
-      return duplicatedImages
-        .sort(() => Math.random() - 0.5)
-        .map((image, index) => ({
-          ...image,
-          index,
-          isFlipped: false,
-          isMatched: false,
-        }));
-    };
+  const handleCardClick = (clickedIndex) => {
+    if (!canFlip || cards[clickedIndex].isFlipped || cards[clickedIndex].isMatched) return;
 
-    const [cards, setCards] = useState(initializeCards);
-    const [flippedCards, setFlippedCards] = useState([]);
-    const [matchedPairs, setMatchedPairs] = useState(0);
-    const [showWinMessage, setShowWinMessage] = useState(false);
-    const [canFlip, setCanFlip] = useState(true);
+    setCards((prev) =>
+      prev.map((card, idx) =>
+        idx === clickedIndex ? { ...card, isFlipped: true } : card
+      )
+    );
+    setFlippedCards((prev) => [...prev, clickedIndex]);
+  };
 
-    // win check
-    useEffect(() => {
-      if (matchedPairs === initialImages.length && initialImages.length > 0) {
-        setTimeout(() => setShowWinMessage(true), 500);
-      }
-    }, [matchedPairs, initialImages.length]);
+  useEffect(() => {
+    if (flippedCards.length === 2) {
+      setCanFlip(false);
+      const [i1, i2] = flippedCards;
+      const c1 = cards[i1];
+      const c2 = cards[i2];
 
-    const handleCardClick = (clickedIndex) => {
-      if (!canFlip || cards[clickedIndex].isFlipped || cards[clickedIndex].isMatched) return;
-
-      setCards((prev) =>
-        prev.map((card, idx) =>
-          idx === clickedIndex ? { ...card, isFlipped: true } : card
-        )
-      );
-      setFlippedCards((prev) => [...prev, clickedIndex]);
-    };
-
-    useEffect(() => {
-      if (flippedCards.length === 2) {
-        setCanFlip(false);
-        const [i1, i2] = flippedCards;
-        const c1 = cards[i1];
-        const c2 = cards[i2];
-
-        if (c1.id === c2.id) {
-          // match
-          setMatchedPairs((prev) => prev + 1);
+      if (c1.id === c2.id) {
+        // match
+        setMatchedPairs((prev) => prev + 1);
+        setCards((prev) =>
+          prev.map((card, idx) =>
+            idx === i1 || idx === i2 ? { ...card, isMatched: true } : card
+          )
+        );
+        setFlippedCards([]);
+        setCanFlip(true);
+      } else {
+        // no match → flip back
+        setTimeout(() => {
           setCards((prev) =>
             prev.map((card, idx) =>
-              idx === i1 || idx === i2 ? { ...card, isMatched: true } : card
+              idx === i1 || idx === i2 ? { ...card, isFlipped: false } : card
             )
           );
           setFlippedCards([]);
           setCanFlip(true);
-        } else {
-          // no match → flip back
-          setTimeout(() => {
-            setCards((prev) =>
-              prev.map((card, idx) =>
-                idx === i1 || idx === i2 ? { ...card, isFlipped: false } : card
-              )
-            );
-            setFlippedCards([]);
-            setCanFlip(true);
-          }, 1000);
-        }
+        }, 1000);
       }
-    }, [flippedCards, cards]);
+    }
+  }, [flippedCards, cards]);
 
-    const resetGame = () => {
-      setCards(initializeCards());
-      setFlippedCards([]);
-      setMatchedPairs(0);
-      setShowWinMessage(false);
-      setCanFlip(true);
-    };
-
-    return (
-      <div className="min-h-screen flex flex-col items-center bg-gradient-to-br from-pink-100 to-pink-200 p-4 relative">
-        <FloatingHearts /> {/* ❤️ background hearts */}
-        {/* Back btn */}
-        <div className="absolute top-8 left-8">
-          <button
-            onClick={onBack}
-            className="flex items-center text-pink-700 font-semibold px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 ease-in-out"
-            style={{ backgroundColor: 'rgb(255, 240, 245, 0.7)' }}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2.5}
-              stroke="currentColor"
-              className="w-5 h-5 mr-1"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 19.5L8.25 12l7.5-7.5"
-              />
-            </svg>
-            Back
-          </button>
-        </div>
-
-        <div className="bg-white rounded-3xl shadow-xl p-6 mt-20 max-w-lg w-full text-center">
-          <h1 className="text-3xl font-bold text-pink-700 mb-2">❤️ Memories for Youuu !❤️</h1>
-          <p className="text-gray-600 mb-6">ផ្គូផ្គងរូបភាពដូចគ្នា</p>
-
-          <div className="grid grid-cols-4 gap-3 justify-center">
-            {cards.map((card, index) => (
-              <div
-                key={index}
-                onClick={() => handleCardClick(index)}
-                className="w-20 h-20 sm:w-24 sm:h-24 cursor-pointer relative"
-              >
-                {card.isFlipped || card.isMatched ? (
-                  <img
-                    src={card.src}
-                    alt={`card-${card.id}`}
-                    className="w-full h-full object-cover rounded-lg shadow-md"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-pink-400 to-pink-600 rounded-lg shadow-md">
-                    <span className="text-white text-2xl">?</span>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-
-          <button
-            onClick={resetGame}
-            className="mt-6 bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-full shadow-md transition"
-          >
-            Reset Game
-          </button>
-        </div>
-
-        {/* Win Modal */}
-        {showWinMessage && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-2xl p-8 shadow-lg text-center max-w-sm w-full">
-              <div className="text-red-500 text-6xl mb-4">❤️</div>
-              <h2 className="text-2xl font-bold text-pink-700 mb-2">អ្នកពូកែណាស់!</h2>
-              <p className="text-gray-600 mb-6">សូមអបអរសាទរ!</p>
-              <button
-                onClick={() => {
-                  setShowWinMessage(false);
-                  resetGame();
-                }}
-                className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-full shadow-md transition"
-              >
-                បិទ
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
-    );
+  const resetGame = () => {
+    setCards(initializeCards());
+    setFlippedCards([]);
+    setMatchedPairs(0);
+    setShowWinMessage(false);
+    setCanFlip(true);
   };
 
+  return (
+    <div className="min-h-screen flex flex-col items-center bg-gradient-to-br from-pink-100 to-pink-200 p-4 relative">
+      <FloatingHearts /> {/* ❤️ background hearts */}
+      {/* Back btn */}
+      <div className="absolute top-8 left-8">
+        <button
+          onClick={onBack}
+          className="flex items-center text-pink-700 font-semibold px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 ease-in-out"
+          style={{ backgroundColor: 'rgb(255, 240, 245, 0.7)' }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2.5}
+            stroke="currentColor"
+            className="w-5 h-5 mr-1"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 19.5L8.25 12l7.5-7.5"
+            />
+          </svg>
+          Back
+        </button>
+      </div>
 
-  // MessagesPage Component
+      <div className="bg-white rounded-3xl shadow-xl p-6 mt-20 max-w-lg w-full text-center">
+        <h1 className="text-3xl font-bold text-pink-700 mb-2">❤️ Memories for Youuu !❤️</h1>
+        <p className="text-gray-600 mb-6">ផ្គូផ្គងរូបភាពដូចគ្នា</p>
+
+        <div className="grid grid-cols-4 gap-3 justify-center">
+          {cards.map((card, index) => (
+            <div
+              key={index}
+              onClick={() => handleCardClick(index)}
+              className="w-20 h-20 sm:w-24 sm:h-24 cursor-pointer relative"
+            >
+              {card.isFlipped || card.isMatched ? (
+                <img
+                  src={card.src}
+                  alt={`card-${card.id}`}
+                  className="w-full h-full object-cover rounded-lg shadow-md"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-pink-400 to-pink-600 rounded-lg shadow-md">
+                  <span className="text-white text-2xl">?</span>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <button
+          onClick={resetGame}
+          className="mt-6 bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-full shadow-md transition"
+        >
+          Reset Game
+        </button>
+      </div>
+
+      {/* Win Modal */}
+      {showWinMessage && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl p-8 shadow-lg text-center max-w-sm w-full">
+            <div className="text-red-500 text-6xl mb-4">❤️</div>
+            <h2 className="text-2xl font-bold text-pink-700 mb-2">អ្នកពូកែណាស់!</h2>
+            <p className="text-gray-600 mb-6">សូមអបអរសាទរ!</p>
+            <button
+              onClick={() => {
+                setShowWinMessage(false);
+                resetGame();
+              }}
+              className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-full shadow-md transition"
+            >
+              បិទ
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+/* =====================================================
+              ##  MessagesPage Component
+=======================================================*/
 const MessagesPage = ({ onBack }) => {
   const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(false);
 
@@ -768,9 +779,8 @@ const MessagesPage = ({ onBack }) => {
 
         {/* Top Flap */}
         <div
-          className={`absolute w-full h-1/2 bg-pink-500 rounded-t-lg origin-bottom transition-transform duration-700 ease-in-out ${
-            isEnvelopeOpen ? "rotate-x-180" : "rotate-x-0"
-          }`}
+          className={`absolute w-full h-1/2 bg-pink-500 rounded-t-lg origin-bottom transition-transform duration-700 ease-in-out ${isEnvelopeOpen ? "rotate-x-180" : "rotate-x-0"
+            }`}
           style={{
             top: "0%",
             zIndex: 2,
@@ -794,67 +804,69 @@ const MessagesPage = ({ onBack }) => {
             maxHeight: "300px",
           }}
         >
-         <div
-          className="flex flex-col items-center justify-center h-full 
+          <div
+            className="flex flex-col items-center justify-center h-full 
                     p-4 rounded-lg 
                     bg-pink-50 
                     text-xs sm:text-sm md:text-base lg:text-lg 
                     leading-relaxed w-full max-w-sm sm:max-w-md md:max-w-xl lg:max-w-2xl
                     overflow-y-auto"
-        >
-          <p className="font-bold text-pink-700 text-base sm:text-lg md:text-xl lg:text-2xl mb-2 text-center">
-            Dear My LOVE❤️,
-          </p>
-          <p className="text-gray-800 text-justify break-words">
-            យើងនៅជាមួយគ្នាយូរណាស់មកហើយ អរគុណដែលអ្នកមិនដែលបោះបង់ខ្ញុំ។ 
-            យើងបានឆ្លងកាត់រឿងល្អៗ និងអាក្រក់ជាច្រើនជាមួយគ្នា❤️
-          </p>
-        </div>
+          >
+            <p className="font-bold text-pink-700 text-base sm:text-lg md:text-xl lg:text-2xl mb-2 text-center">
+              Dear My LOVE❤️,
+            </p>
+            <p className="text-gray-800 text-justify break-words">
+              យើងនៅជាមួយគ្នាយូរណាស់មកហើយ អរគុណដែលអ្នកមិនដែលបោះបង់ខ្ញុំ។
+              យើងបានឆ្លងកាត់រឿងល្អៗ និងអាក្រក់ជាច្រើនជាមួយគ្នា❤️
+            </p>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-  // Main App component
-  const App = () => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [currentPage, setCurrentPage] = useState('loading'); // 'loading', 'home', 'memories', 'calendar', 'puzzle', 'messages'
+/* =====================================================
+              ## Main App component
+=======================================================*/
+const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState('loading'); // 'loading', 'home', 'memories', 'calendar', 'puzzle', 'messages'
 
-    const handleLoadingComplete = () => {
-      setIsLoading(false);
-      setCurrentPage('home'); // Automatically go to home after loading
-    };
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+    setCurrentPage('home'); // Automatically go to home after loading
+  };
 
-    const handleNavigate = (path) => {
-      setCurrentPage(path);
-    };
+  const handleNavigate = (path) => {
+    setCurrentPage(path);
+  };
 
-    return (
-      <>
-        {/* Tailwind CSS import */}
-        <script src="https://cdn.tailwindcss.com"></script>
-        {/* Google Font Import (Inter) */}
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  return (
+    <>
+      {/* Tailwind CSS import */}
+      <script src="https://cdn.tailwindcss.com"></script>
+      {/* Google Font Import (Inter) */}
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-        {isLoading && currentPage === 'loading' ? (
-          <LoadingScreen onLoadingComplete={handleLoadingComplete} />
-        ) : currentPage === 'home' ? (
-          <HomeMenu onNavigate={handleNavigate} />
-        ) : currentPage === 'memories' ? (
-          <MemoriesPage onBack={() => setCurrentPage('home')} />
-        ) : currentPage === 'calendar' ? (
-          <CalendarPage onBack={() => setCurrentPage('home')} />
-        ) : currentPage === 'puzzle' ? (
-          <PuzzleGamePage onBack={() => setCurrentPage('home')} />
-        ) : currentPage === 'messages' ? (
-          <MessagesPage onBack={() => setCurrentPage('home')} />
-        ) : (
-          // Fallback for unknown pages (can be a 404 page)
-          <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <p className="text-xl text-gray-700">Page Not Found!</p>
-          </div>
-        )}
+      {isLoading && currentPage === 'loading' ? (
+        <LoadingScreen onLoadingComplete={handleLoadingComplete} />
+      ) : currentPage === 'home' ? (
+        <HomeMenu onNavigate={handleNavigate} />
+      ) : currentPage === 'memories' ? (
+        <MemoriesPage onBack={() => setCurrentPage('home')} />
+      ) : currentPage === 'calendar' ? (
+        <CalendarPage onBack={() => setCurrentPage('home')} />
+      ) : currentPage === 'puzzle' ? (
+        <PuzzleGamePage onBack={() => setCurrentPage('home')} />
+      ) : currentPage === 'messages' ? (
+        <MessagesPage onBack={() => setCurrentPage('home')} />
+      ) : (
+        // Fallback for unknown pages (can be a 404 page)
+        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+          <p className="text-xl text-gray-700">Page Not Found!</p>
+        </div>
+      )}
     </>
   );
 };
